@@ -13,7 +13,7 @@ def SSVEPExp(self, config):
 
     Label(text=config.INST_TEXT,
           markup=True,
-          text_width=(s(700), None),
+          text_size=(s(1100), None),
           font_size=s(config.INST_FONT)
           )
     with UntilDone():
@@ -40,12 +40,15 @@ def SSVEPExp(self, config):
                                  duration=config.ANI_DURATION)
 
                 Wait(config.ISI, jitter=config.JITTER)
-
+        Label(text='Short Break! When you are ready to continue, press Spacebar.')
+        with UntilDone():
+            KeyPress(keys=['SPACEBAR'])
 
 if __name__ == "__main__":
     import config as config
-
+    from smile.startup import InputSubject
     exp = Experiment()
+    InputSubject()
     SSVEPExp(config)
 
     exp.run()
